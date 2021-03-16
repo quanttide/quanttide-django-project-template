@@ -1,0 +1,4 @@
+django=={{ django_version }}
+djangorestframework>=3.12.2
+django-environ>=0.4.5
+gunicorn>=20.0.4

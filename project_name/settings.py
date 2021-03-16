@@ -11,6 +11,10 @@ https://docs.djangoproject.com/en/{{ doc_version }}/ref/settings/
 """
 
 import os
+import datetime
+from distutils.util import strtobool
+
+import environ
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -49,7 +53,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = '{{ project_name }}.urls'
+ROOT_URLCONF = 'project_name.urls'
 
 TEMPLATES = [
     {

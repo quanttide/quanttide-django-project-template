@@ -1,0 +1,41 @@
+# ----- 拉取环境 -----
+
+# 从仓库拉取带有Python 3.7的Linux 环境
+FROM python:{{ python.version }}
+
+# 设置Python环境变量
+ENV PYTHONUNBUFFERED 1
+
+# ----- 复制文件到镜像 -----
+
+# 创建 code 文件夹并将其设置为工作目录
+RUN mkdir /qtapp
+WORKDIR /qtapp
+
+# 将当前目录复制到容器的 code 目录
+ADD . /qtapp/
+
+# ----- 安装Python依赖 -----
+
+# 安装MySQL库的依赖
+RUN echo \
+    deb http://mirrors.cloud.tencent.com/debian/ buster main non-free contrib \
+    deb http://mirrors.cloud.tencent.com/debian-security buster/updates main \
+    deb http://mirrors.cloud.tencent.com/debian/ buster-updates main non-free contrib \
+    deb http://mirrors.cloud.tencent.com/debian/ buster-backports main non-free contri \
+        > /etc/apt/sources.list
+RUN apt-get update && apt-get install python3-dev default-libmysqlclient-dev -y
+
+# 安装Python依赖库
+RUN pip config set global.index-url https://mirrors.cloud.tencent.com/pypi/simple \
+  && pip install -r requirements.txt
+
+# ----- Django manage.py -----
+
+# 运行manage.py命令
+CMD python3 manage.py makemigrations \
+    && python3 manage.py migrate \
+    && python3 manage.py createcachetable \
+    && exec gunicorn {{ project_name }}.wsgi:application --bind 0.0.0.0:8000
+# 暴露端口
+EXPOSE 8000
