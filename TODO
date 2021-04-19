@@ -1,3 +1,3 @@
 # TODO
 
-- 检查Dockerfile的Python版本是否正确。
+- 检测Django模板语言和CloudBase模板变量是否冲突影响逻辑。
