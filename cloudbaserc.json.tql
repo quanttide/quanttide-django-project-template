@@ -3,13 +3,13 @@
   "$schema": "https://framework-1258016615.tcloudbaseapp.com/schema/latest.json",
   "version": "2.0",
   "framework": {
-    "name": "{{env.CLOUDBASE_APPLICATION_NAME}}",
+    "name": "{{ env.CLOUDBASE_APPLICATION_NAME }}",
     "plugins": {
       "server": {
         "use": "@cloudbase/framework-plugin-container",
         "inputs": {
           "serviceName": "{{ project_name }}",
-          "servicePath": "/{{ project_name }}",
+          "servicePath": "{{ env.CLOUDBASE_SERVICE_PATH }}",
           "containerPort": 8000,
           "envVariables": {
             "ENV": "{{env.ENV}}",
