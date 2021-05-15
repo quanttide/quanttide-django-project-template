@@ -8,7 +8,7 @@
       "server": {
         "use": "@cloudbase/framework-plugin-container",
         "inputs": {
-          "serviceName": "{{ project_name }}",
+          "serviceName": "{{ env.CLOUDBASE_APPLICATION_NAME }}",
           "servicePath": "{{ env.CLOUDBASE_SERVICE_PATH }}",
           "containerPort": 8000,
           "envVariables": {

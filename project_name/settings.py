@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/{{ doc_version }}/ref/settings/
 
 import os
 import datetime
-from distutils.util import strtobool
+import ast
 
 import environ
 
@@ -126,10 +126,6 @@ if DEBUG:
         'default': {
             'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
             'LOCATION': os.path.join(BASE_DIR, 'caches/default'), },
-        VCODE_CACHE_TABLE: {
-            'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
-            'LOCATION': os.path.join(BASE_DIR, 'caches/'+VCODE_CACHE_TABLE),
-        },
     }
 
 # Password validation
@@ -169,7 +165,7 @@ TIME_ZONE = 'Asia/Shanghai'  # 北京时间
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates'],
+        'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

@@ -4,23 +4,7 @@ import os
 import sys
 
 
-def create_dir_if_not_exists(dir_name):
-    """
-    工具函数，开发环境下运行时检查并自动创建目录
-    :param dir_name:
-    :return:
-    """
-    dir_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), dir_name)
-    if not os.path.exists(dir_path):
-        os.mkdir(dir_path)
-
-
 def main():
-    # 开发环境下创建必要文件夹
-    required_dirs = ['db', 'certs', 'caches', 'logs', 'media']
-    for dir in required_dirs:
-        create_dir_if_not_exists(dir)
-
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', '{{ project_name }}.settings')
     try:
         from django.core.management import execute_from_command_line
