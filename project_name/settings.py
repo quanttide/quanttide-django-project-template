@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/{{ doc_version }}/ref/settings/
 """
 
 import os
-import datetime
 import ast
 
 import environ
