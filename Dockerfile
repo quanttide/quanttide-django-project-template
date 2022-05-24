@@ -27,4 +27,4 @@ EXPOSE 8000
 CMD python3 manage.py makemigrations \
     && python3 manage.py migrate \
     && python3 manage.py createcachetable \
-    && exec gunicorn qtuser.wsgi:application --bind 0.0.0.0:8000
+    && exec gunicorn {{ project_name }}.wsgi:application --bind 0.0.0.0:8000

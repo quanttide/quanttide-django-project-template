@@ -3,6 +3,13 @@
 ## 使用
 
 ```shell
-mv
-    <project_name> <local_directory> 
+django-admin startproject --template https://quanttide-generic.pkg.coding.net/qtopen-django/django-templates/django-project-template.zip --name settings.yaml,Dockerfile <project_name> <local_directory> 
+```
+
+## 本地调试
+
+假设工作目录为当前目录
+
+```shell
+django-admin startproject --template . --name settings.yaml,Dockerfile django_example <example_project_dir>
 ```
