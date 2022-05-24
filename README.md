@@ -3,7 +3,7 @@
 ## 使用
 
 ```shell
-django-admin startproject --template https://quanttide-generic.pkg.coding.net/qtopen-django/django-templates/django-project-template.zip --name settings.yaml,Dockerfile <project_name> <local_directory> 
+django-admin startproject --template https://quanttide.coding.net/p/qtopen-django/d/django-project-template/git/archive/master.zip --name settings.yaml,Dockerfile <project_name> <local_directory> 
 ```
 
 ## 本地调试
