@@ -89,22 +89,24 @@ development:
 testing:
   DEBUG: false
   DATABASES:
-    ENGINE: django.db.backends.mysql
-    HOST:
-    PORT: 3306
-    USER:
-    PASSWORD:
-    NAME: {{ project_name }}
+    defualt:
+      ENGINE: django.db.backends.mysql
+      HOST:
+      PORT: 3306
+      USER:
+      PASSWORD:
+      NAME: {{ project_name }}
   CACHE_MIDDLEWARE_SECONDS: 0  # 关闭pre-view缓存
 
 # ----- 生产环境 -----
 production:
   DEBUG: false
   DATABASES:
-    ENGINE: django.db.backends.mysql
-    HOST:
-    PORT: 3306
-    USER:
-    PASSWORD:
-    NAME: {{ project_name }}
+    default:
+      ENGINE: django.db.backends.mysql
+      HOST:
+      PORT: 3306
+      USER:
+      PASSWORD:
+      NAME: {{ project_name }}
   CACHE_MIDDLEWARE_SECONDS: 600  # pre-view缓存时长为10分钟
