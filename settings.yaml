@@ -89,7 +89,7 @@ development:
 testing:
   DEBUG: false
   DATABASES:
-    defualt:
+    default:
       ENGINE: django.db.backends.mysql
       HOST:
       PORT: 3306
