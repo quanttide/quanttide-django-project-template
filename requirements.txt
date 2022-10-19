@@ -8,6 +8,6 @@ psycopg2==2.9.4; platform_system == "Windows"
 
 # --- 项目特定依赖 ---
 # 声明式配置库
-dynaconf==3.1.9
+dynaconf==3.1.11
 # CORS策略
 django-cors-headers==3.13.0
