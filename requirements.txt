@@ -1,13 +1,13 @@
-Django==3.2.10 
-djangorestframework==3.13.1 
-gunicorn==20.1.0 
-mysqlclient==2.1.0 
-django-cors-headers==3.10.1 
-django-project-version==0.16.0 
-GitPython==3.1.26
-dynaconf==3.1.8 
-ruamel.yaml==0.17.21
---extra-index-url=https://quanttide-pypi.pkg.coding.net/qtopen-django/drf-remote-auth/simple
-drf-remote-auth==0.1.0
---extra-index-url=https://quanttide-pypi.pkg.coding.net/qtopen-django/drf-admin/simple
-drf-admin==0.2.0
+# Django框架
+Django==4.0.8
+djangorestframework==3.13.1
+gunicorn==20.1.0
+# PostgreSQL数据库
+psycopg2-binary==2.9.4; platform_system != "Windows"
+psycopg2==2.9.4; platform_system == "Windows"
+
+# --- 项目特定依赖 ---
+# 声明式配置库
+dynaconf==3.1.9
+# CORS策略
+django-cors-headers==3.13.0

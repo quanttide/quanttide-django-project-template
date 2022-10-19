@@ -1,6 +1,6 @@
 # ----- 拉取环境 -----
-# 自制Django-MySQL版镜像
-FROM quanttide-docker.pkg.coding.net/qtopen-django/django-with-mysql/django-with-mysql:latest
+# 量潮Django镜像PostgreSQL版
+FROM quanttide-docker.pkg.coding.net/qtopen-django/django-with-postgresql/django-with-postgresql:latest
 
 
 # ----- 复制文件到镜像 -----

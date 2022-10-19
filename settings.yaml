@@ -1,6 +1,7 @@
 default:
   # --- Django ---
   # https://docs.djangoproject.com/en/4.0/ref/settings/
+  DEBUG: false
   ROOT_URLCONF: {{ project_name }}.urls
   WSGI_APPLICATION: {{ project_name }}.wsgi.application
   ALLOWED_HOSTS:
@@ -15,9 +16,6 @@ default:
     # 第三方
     - rest_framework
     - corsheaders  # CORS策略
-    - djversion  # Git版本
-    - drf_remote_auth  # 微服务鉴权
-    - drf_admin  # 管理后台
   MIDDLEWARE:
     # https://docs.djangoproject.com/en/4.0/ref/middleware/#middleware-ordering
     - django.middleware.security.SecurityMiddleware
@@ -27,20 +25,31 @@ default:
     - django.middleware.common.CommonMiddleware
     - django.middleware.csrf.CsrfViewMiddleware
     - django.middleware.cache.FetchFromCacheMiddleware
+  DATABASES:
+    default:
+      ENGINE: django.db.backends.postgresql
+      HOST:
+      PORT: 5432
+      USER:
+      PASSWORD:
+      NAME: {{ project_name }}
   CACHES:
     default:
       BACKEND: django.core.cache.backends.db.DatabaseCache
       LOCATION: django_cache
-  AUTH_USER_MODEL: drf_remote_auth.AuthUser
+  AUTH_USER_MODEL:
   TEMPLATES:
     - BACKEND: django.template.backends.django.DjangoTemplates
       APP_DIRS: True
+  # Static files (CSS, JavaScript, Images)
+  # https://docs.djangoproject.com/en/4.0/howto/static-files/
   STATIC_URL: /static/
   LANGUAGE_CODE: zh-Hans
   USE_I18N: true
   USE_L10N: true
   USE_TZ: false
   TIME_ZONE: Asia/Shanghai
+  DEFAULT_AUTO_FIELD: django.db.models.BigAutoField
 
   # --- REST Framework ---
   # https://www.django-rest-framework.org/api-guide/settings/
@@ -64,16 +73,6 @@ default:
   # --- Django CORS ---
   CORS_ALLOW_ALL_ORIGINS: True
 
-  # --- drf-admin ---
-  DRF_ADMIN:
-    DEFAULT_ADMIN_PERMISSION_CLASSES:
-      # TODO: 接入鉴权系统以后改回默认值`IsAuthenticated`
-      - rest_framework.permissions.AllowAny
-
-  # --- djversion ---
-  DJVERSION_GIT_REPO_PATH: BASE_DIR
-  DJVERSION_GIT_USE_TAG: True
-
 # ----- 开发环境 -----
 development:
   DEBUG: true
@@ -87,26 +86,8 @@ development:
 
 # ----- 测试环境 -----
 testing:
-  DEBUG: false
-  DATABASES:
-    default:
-      ENGINE: django.db.backends.mysql
-      HOST:
-      PORT: 3306
-      USER:
-      PASSWORD:
-      NAME: {{ project_name }}
   CACHE_MIDDLEWARE_SECONDS: 0  # 关闭pre-view缓存
 
 # ----- 生产环境 -----
 production:
-  DEBUG: false
-  DATABASES:
-    default:
-      ENGINE: django.db.backends.mysql
-      HOST:
-      PORT: 3306
-      USER:
-      PASSWORD:
-      NAME: {{ project_name }}
   CACHE_MIDDLEWARE_SECONDS: 600  # pre-view缓存时长为10分钟
