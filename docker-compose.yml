@@ -20,7 +20,8 @@ services:
     environment:
       # 开发环境
       # - DJANGO_ENV=development
-      # - DJNAGO_DEBUG=True
+      # - DJNAGO_DEBUG=False
+      # 测试环境
       - DJANGO_ENV=testing
       - DJANGO_SECRET_KEY=fake-key
       - DJANGO_DATABASES__default__HOST=db
