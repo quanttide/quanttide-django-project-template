@@ -18,8 +18,11 @@ services:
     depends_on:
       - db
     environment:
+      # 开发环境
       # - DJANGO_ENV=development
+      # - DJNAGO_DEBUG=True
       - DJANGO_ENV=testing
+      - DJANGO_SECRET_KEY=fake-key
       - DJANGO_DATABASES__default__HOST=db
       - DJANGO_DATABASES__default__NAME=postgres
       - DJANGO_DATABASES__default__USER=postgres
