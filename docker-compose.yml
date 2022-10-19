@@ -1,12 +1,23 @@
+# Docker Compose配置文件
+#
+# 本地模拟云端容器环境。
+# 可用来调试和修复云端容器配置，或调试多租户等需要类似云端环境的场景。
+#
+# 参考资料
+#  - https://docs.docker.com/samples/django/
+#  - https://learndjango.com/tutorials/django-docker-and-postgresql-tutorial
+
+# Docker Compose版本
 version: "3.9"
 services:
+  # Web服务
   web:
     build: .
     ports:
       - "8000:8000"
-    command: python3 manage.py migrate && python3 manage.py createcachetable && gunicorn {{ project_name }}.wsgi:application --bind 0.0.0.0:8000
     depends_on:
       - db
+  # PostgreSQL数据库
   db:
     image: postgres:14
     volumes:
