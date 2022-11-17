@@ -10,7 +10,7 @@ RUN mkdir /app
 WORKDIR /app
 
 # 将当前目录复制到容器的 code 目录
-ADD . /app/
+ADD .. /app/
 
 
 # ----- 安装Python依赖 -----
@@ -27,4 +27,4 @@ EXPOSE 8000
 CMD python3 manage.py makemigrations \
     && python3 manage.py migrate \
     && python3 manage.py createcachetable \
-    && exec gunicorn {{ project_name }}.wsgi:application --bind 0.0.0.0:8000
+    && exec gunicorn {{ cookiecutter.project_name }}.wsgi:application --bind 0.0.0.0:8000

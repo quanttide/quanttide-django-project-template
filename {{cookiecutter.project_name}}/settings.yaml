@@ -2,8 +2,8 @@ default:
   # --- Django ---
   # https://docs.djangoproject.com/en/4.0/ref/settings/
   DEBUG: false
-  ROOT_URLCONF: {{ project_name }}.urls
-  WSGI_APPLICATION: {{ project_name }}.wsgi.application
+  ROOT_URLCONF: {{ cookiecutter.project_name }}.urls
+  WSGI_APPLICATION: {{ cookiecutter.project_name }}.wsgi.application
   ALLOWED_HOSTS:
     - '*'
   INTERNAL_IPS:
@@ -32,7 +32,7 @@ default:
       PORT: 5432
       USER:
       PASSWORD:
-      NAME: {{ project_name }}
+      NAME: {{ cookiecutter.project_name }}
   CACHES:
     default:
       BACKEND: django.core.cache.backends.db.DatabaseCache

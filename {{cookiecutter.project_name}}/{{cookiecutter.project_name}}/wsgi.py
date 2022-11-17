@@ -4,13 +4,13 @@ WSGI config for django_project_template project.
 It exposes the WSGI callable as a module-level variable named ``application``.
 
 For more information on this file, see
-https://docs.djangoproject.com/en/{{ doc_version }}/howto/deployment/wsgi/
+https://docs.djangoproject.com/en/{{ cookiecutter.django_doc_version }}/howto/deployment/wsgi/
 """
 
 import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', '{{ project_name }}.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', '{{ cookiecutter.project_name }}.settings')
 
 application = get_wsgi_application()
