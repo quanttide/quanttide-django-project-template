@@ -1,0 +1,38 @@
+# Docker Compose配置文件
+#
+# 本地模拟云端容器环境。
+# 可用来调试和修复云端容器配置，或调试多租户等需要类似云端环境的场景。
+#
+# 参考资料
+#  - https://docs.docker.com/samples/django/
+#  - https://learndjango.com/tutorials/django-docker-and-postgresql-tutorial
+
+# Docker Compose版本
+version: "3.9"
+services:
+  # Web服务
+  web:
+    build: ..
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    environment:
+      # 开发环境
+      # - DJANGO_ENV=development
+      # - DJNAGO_DEBUG=False
+      # 测试环境
+      - DJANGO_ENV=testing
+      - DJANGO_SECRET_KEY=fake-key
+      - DJANGO_DATABASES__default__HOST=db
+      - DJANGO_DATABASES__default__NAME=postgres
+      - DJANGO_DATABASES__default__USER=postgres
+  # PostgreSQL数据库
+  db:
+    image: postgres:14
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_HOST_AUTH_METHOD=trust
+volumes:
+  postgres_data:

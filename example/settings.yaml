@@ -2,8 +2,8 @@ default:
   # --- Django ---
   # https://docs.djangoproject.com/en/4.0/ref/settings/
   DEBUG: false
-  ROOT_URLCONF: {{ cookiecutter.project_name }}.urls
-  WSGI_APPLICATION: {{ cookiecutter.project_name }}.wsgi.application
+  ROOT_URLCONF: example.urls
+  WSGI_APPLICATION: example.wsgi.application
   ALLOWED_HOSTS:
     - '*'
   INTERNAL_IPS:
@@ -32,11 +32,11 @@ default:
       PORT: 5432
       USER:
       PASSWORD:
-      NAME: {{ cookiecutter.project_name }}
+      NAME: example
   CACHES:
     default:
-      BACKEND: django.core.cache.backends.redis.RedisCache
-      LOCATION:
+      BACKEND: django.core.cache.backends.db.DatabaseCache
+      LOCATION: django_cache
   AUTH_USER_MODEL:
   TEMPLATES:
     - BACKEND: django.template.backends.django.DjangoTemplates
@@ -80,11 +80,9 @@ development:
     default:
       ENGINE: django.db.backends.sqlite3
       NAME: db.sqlite3
-  # https://docs.djangoproject.com/en/4.1/topics/cache/#dummy-caching-for-development
-  CACHES:
-    default:
-      BACKEND: django.core.cache.backends.dummy.DummyCache
   CACHE_MIDDLEWARE_SECONDS: 0  # 关闭pre-view缓存
+  # OpenAPI文档路径
+  # OPENAPI_DOC_PATH: api/_build/openapi.yml
 
 # ----- 测试环境 -----
 testing:
